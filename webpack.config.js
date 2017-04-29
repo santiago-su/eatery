@@ -1,12 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const host = process.env.APP_HOST || 'localhost';
-
-const extractSass = new ExtractTextPlugin({
-  filename: '[name].[contenthash].css',
-  disable: process.env.NODE_ENV === 'development'
-});
 
 const config = {
   devtool: 'source-map',
@@ -32,20 +26,12 @@ const config = {
         }
       },
       {
-        test: /\.scss$/,
-        use: extractSass.extract({
-          use: [{
-            loader: 'css-loader', options: { sourceMap: true }
-          }, {
-            loader: 'sass-loader', options: { sourceMap: true }
-          }],
-          // use style-loader in development
-          fallback: 'style-loader'
-        })
+        test: /\.(css|scss)$/,
+        loaders: ['style-loader','css-loader', 'postcss-loader', 'sass-loader']
       }
     ]
   },
-  plugins: [extractSass, new webpack.HotModuleReplacementPlugin()]
+  plugins: [new webpack.HotModuleReplacementPlugin()]
 };
 
 module.exports = config;
