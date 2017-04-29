@@ -45,9 +45,9 @@ const config = {
   },
   plugins: [
     extractSass,
-    new webpack.HotModuleReplacementPlugin(),
     new webpack.optimize.UglifyJsPlugin({
       minimize: true,
+      sourceMap: true,
       compress: {
         warnings: false
       }
