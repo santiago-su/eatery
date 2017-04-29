@@ -8,8 +8,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "node index",
-    "start": "nf start",
-    "postinstall": "webpack -p --config ./webpack.prod.config.js --progress --colors"
+    "start": "webpack -p --config ./webpack.prod.config.js --progress --colors"
   },
   "author": "Santiago Suarez",
   "license": "ISC",
