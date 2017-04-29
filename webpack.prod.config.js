@@ -1,7 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const host = process.env.APP_HOST || 'localhost';
 
 const extractSass = new ExtractTextPlugin({
   filename: '[name].[contenthash].css',
