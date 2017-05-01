@@ -1,33 +1,13 @@
+const path = require('path');
 const express = require('express');
 const app = express();
-const path = require('path');
-const host = process.env.APP_HOST || 'localhost';
-const isProduction = process.env.NODE_ENV === 'production';
-const port = process.env.PORT || 3000;
-const httpProxy = require('http-proxy');
-const proxy = httpProxy.createProxyServer();
+const port = (process.env.PORT || 3000);
 const publicPath = path.resolve(__dirname, '..', 'public');
 
-if (!isProduction) {
-  // Proxy to webpack-dev-server
-  app.all(['/assets/*', '*.hot-update.json'], function (req, res) {
-    proxy.web(req, res, {
-      target: `http://${host}:3001`
-    });
-  });
-}
-
 app.use(express.static(publicPath));
-
-app.get('/*', function(req, res) {
+app.get('/*', function (req, res) {
   res.sendFile(path.join(publicPath, 'index.html'));
 });
 
-
-proxy.on('error', function(e) {
-  console.log('Proxy error', e);
-});
-
-app.listen(port, function () {
-  console.log('Server running on port ' + port);
-});
+app.listen(port);
+console.log(`Listening at http://localhost:${port}`);

@@ -13,7 +13,7 @@ const config = {
     path.resolve(__dirname, 'frontend', 'main.js')
   ],
   output: {
-    path: path.resolve(__dirname, 'public'),
+    path: path.resolve(__dirname, 'public', 'assets'),
     filename: 'bundle.js',
     publicPath: '/public/assets'
   },

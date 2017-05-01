@@ -2,13 +2,14 @@
   "name": "eatery",
   "version": "1.0.0",
   "engines": {
-    "node": "6.9.2"
+    "node": "7.9.0"
   },
   "description": "Grab a bite :)",
   "main": "index.js",
   "scripts": {
-    "dev": "node index",
-    "start": "webpack -p --config ./webpack.prod.config.js --progress --colors"
+    "dev": "node backend/server.js",
+    "start": "webpack -p --config ./webpack.prod.config.js --progress --colors",
+    "heroku-postbuild": "node backend/server.js"
   },
   "author": "Santiago Suarez",
   "license": "ISC",
