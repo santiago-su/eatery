@@ -4,7 +4,10 @@ function AppConfig($stateProvider, $urlRouterProvider, $mdThemingProvider) {
   $stateProvider
   .state('app', {
     abstract: true,
-    templateUrl: 'layout/app-view.html'
+    templateUrl: 'layout/app-view.html',
+    resolve: {
+      geolocation: (Geolocation) => Geolocation.getCurrentPosition()
+    }
   });
 
   $urlRouterProvider.otherwise('/');
