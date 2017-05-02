@@ -1,4 +1,4 @@
-function AppConfig($stateProvider, $urlRouterProvider) {
+function AppConfig($stateProvider, $urlRouterProvider, $mdThemingProvider) {
   'ngInject';
 
   $stateProvider
@@ -9,6 +9,8 @@ function AppConfig($stateProvider, $urlRouterProvider) {
 
   $urlRouterProvider.otherwise('/');
 
+  $mdThemingProvider.theme('default').primaryPalette('orange').accentPalette('pink');
+  $mdThemingProvider.alwaysWatchTheme(true);
 }
 
 export default AppConfig;

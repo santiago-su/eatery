@@ -1,10 +1,15 @@
-<nav class="navbar navbar-light">
-  <div class="container">
-
-    <a class="navbar-brand"
-      ui-sref="app.home"
-      ng-bind="::$ctrl.appName | lowercase">
-    </a>
-
-  </div>
-</nav>
+<md-content layout="row">
+  <md-nav-bar flex="100"
+    md-selected-nav-item="currentNavitem"
+    nav-bar-aria-label="navigation links">
+    <md-nav-item flex="80" md-nav-sref="app.home">
+      <span ng-bind="::$ctrl.appName | lowercase"></span>
+    </md-nav-item>
+    <md-nav-item flex="10" md-nav-click="goto('page2')" name="page2">
+      Login
+    </md-nav-item>
+    <md-nav-item flex="10" md-nav-click="goto('page3')" name="page3">
+      Register
+    </md-nav-item>
+  </md-nav-bar>
+</md-content>
