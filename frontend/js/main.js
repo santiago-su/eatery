@@ -3,6 +3,7 @@ import angular from 'angular';
 import appConfig  from './config/app.config';
 import 'angular-ui-router';
 import './config/app.templates';
+import '../globals.scss';
 
 import './layout';
 import './home';
