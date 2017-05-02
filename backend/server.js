@@ -31,7 +31,7 @@ if (!isProduction) {
 app.use(express.static(publicPath));
 
 app.get('/*', function(req, res) {
-  res.sendFile(path.join(publicPath, 'index.html'));
+  res.sendFile(path.resolve(__dirname, '..', 'frontend','index.html'));
 });
 
 
