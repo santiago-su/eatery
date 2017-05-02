@@ -1,4 +1,0 @@
-angular.module('templates', []).run(['$templateCache', function($templateCache) {$templateCache.put('home/home.html','<div class="home-page">\n\n  <h1>Homeeeee</h1>\n\n</div>\n');
-$templateCache.put('layout/app-view.html','<app-header></app-header>\n\n<div ui-view></div>\n\n<app-footer></app-footer>\n');
-$templateCache.put('layout/footer.html','<footer>\n  <div class="container">\n    <a class="logo-font" ui-sref="app.home" ng-bind="::$ctrl.appName | lowercase"></a>\n    <span class="attribution">\n      &copy; {{::$ctrl.date | date:\'yyyy\'}}.\n    </span>\n  </div>\n</footer>\n');
-$templateCache.put('layout/header.html','<nav class="navbar navbar-light">\n  <div class="container">\n\n    <a class="navbar-brand"\n      ui-sref="app.home"\n      ng-bind="::$ctrl.appName | lowercase">\n    </a>\n\n  </div>\n</nav>\n');}]);
