@@ -1,7 +1,7 @@
 class AppFooterCtrl {
-  constructor() {
+  constructor(AppConstants) {
     'ngInject';
-    this.appName = 'Eatery';
+    this.appName = AppConstants.appName;
 
     this.date = new Date();
   }
