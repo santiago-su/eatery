@@ -1,4 +1,4 @@
-function AppConfig($stateProvider, $urlRouterProvider, $mdThemingProvider) {
+function AppConfig($stateProvider, $urlRouterProvider, $mdThemingProvider, $sceDelegateProvider) {
   'ngInject';
 
   $stateProvider
@@ -11,6 +11,10 @@ function AppConfig($stateProvider, $urlRouterProvider, $mdThemingProvider) {
 
   $mdThemingProvider.theme('default').primaryPalette('orange').accentPalette('pink');
   $mdThemingProvider.alwaysWatchTheme(true);
+  $sceDelegateProvider.resourceUrlWhitelist([
+    'self',
+    'https://maps.googleapis.com/maps/api/**'
+  ]);
 }
 
 export default AppConfig;

@@ -1,6 +1,7 @@
 import angular from 'angular';
 
 import 'angular-material/angular-material.css';
+import constants  from './config/app.constants';
 import angularAnimate from 'angular-animate';
 import angularMaterial from 'angular-material';
 import appConfig  from './config/app.config';
@@ -13,6 +14,7 @@ import './layout';
 import './home';
 import './services';
 import './components';
+import './map';
 
 const requires = [
   angularMaterial,
@@ -22,10 +24,13 @@ const requires = [
   'app.layout',
   'app.home',
   'app.services',
-  'app.components'
+  'app.components',
+  'app.map'
 ];
 
 window.app = angular.module('app', requires);
+
+angular.module('app').constant('AppConstants', constants);
 
 angular.module('app').config(appConfig);
 

@@ -18,6 +18,7 @@
     "express": "^4.15.2",
     "mongodb": "^2.2.26",
     "mongoose": "^4.9.7",
+    "ngmap": "^1.18.4",
     "webpack": "^2.4.1"
   },
   "devDependencies": {
