@@ -12,6 +12,7 @@ import '../globals.scss';
 import './layout';
 import './home';
 import './services';
+import './components';
 
 const requires = [
   angularMaterial,
@@ -20,7 +21,8 @@ const requires = [
   'templates',
   'app.layout',
   'app.home',
-  'app.services'
+  'app.services',
+  'app.components'
 ];
 
 window.app = angular.module('app', requires);
