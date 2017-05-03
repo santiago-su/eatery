@@ -1,6 +1,6 @@
 const AppConstants = {
   appName: 'Eatery',
-  api: 'http:localhost:3000/api'
+  api: 'api'
 };
 
 export default AppConstants;

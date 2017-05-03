@@ -1,5 +1,5 @@
 export default class MapCtrl {
-  constructor($window, $scope, NgMap, $http) {
+  constructor($window, $scope, NgMap, $http, AppConstants) {
     'ngInject';
 
     this._window = $window;
@@ -8,6 +8,7 @@ export default class MapCtrl {
     this._googleMapsCenter = { lat: Number(this._latitude), lng: Number(this._longitude)};
     this._map = NgMap;
     this._$http = $http;
+    this._AppConstants = AppConstants;
     this.request = {
       location: this._googleMapsCenter,
       radius: '500',
@@ -16,6 +17,8 @@ export default class MapCtrl {
 
     // Get Map empty component and start interaction
     this._map.getMap().then((map) => {
+      let $http = this._$http;
+      let constants = this._AppConstants;
 
       // Create google maps marker function
       function createMarker(place) {
@@ -36,6 +39,12 @@ export default class MapCtrl {
       map.setCenter(this._googleMapsCenter);
 
       service.nearbySearch(this.request, function(results, status) {
+        $http({
+          url: `${constants.api}/restaurant`,
+          method: 'POST',
+          data: results
+        }).then((res) => console.log(res));
+
         if (status == google.maps.places.PlacesServiceStatus.OK) {
           for (var i = 0; i < results.length; i++) {
             createMarker(results[i]);
