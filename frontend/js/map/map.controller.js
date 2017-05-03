@@ -1,5 +1,5 @@
 export default class MapCtrl {
-  constructor($window, $scope, NgMap) {
+  constructor($window, $scope, NgMap, $http) {
     'ngInject';
 
     this._window = $window;
@@ -7,26 +7,31 @@ export default class MapCtrl {
     this._longitude = this._window.localStorage['longitude'];
     this._googleMapsCenter = { lat: Number(this._latitude), lng: Number(this._longitude)};
     this._map = NgMap;
+    this._$http = $http;
     this.request = {
       location: this._googleMapsCenter,
       radius: '500',
       type: 'restaurant'
     };
 
+    // Get Map empty component and start interaction
     this._map.getMap().then((map) => {
 
+      // Create google maps marker function
       function createMarker(place) {
-        var marker = new google.maps.Marker({
+        let infoWindow = new google.maps.InfoWindow();
+        let marker = new google.maps.Marker({
           map: map,
           position: place.geometry.location
         });
 
         google.maps.event.addListener(marker, 'click', function() {
-          infowindow.setContent(place.name);
-          infowindow.open(map, this);
+          infoWindow.setContent(place.name);
+          infoWindow.open(map, this);
         });
       }
 
+      // Start the service
       let service = new google.maps.places.PlacesService(map);
       map.setCenter(this._googleMapsCenter);
 
@@ -36,8 +41,9 @@ export default class MapCtrl {
             createMarker(results[i]);
           }
         }
-      })
+      });
 
+      // Trigger resize on map when an event happens to avoid gray map
       google.maps.event.trigger(map, 'resize');
     }).catch((error) => {
       console.log(error);
