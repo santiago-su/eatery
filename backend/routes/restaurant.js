@@ -16,7 +16,6 @@ function getRestaurants(req, res) {
  * POST /restaurant
  */
 function postRestaurant(req, res) {
-  console.log('request body', req.body);
   let restaurants = req.body
   Restaurant.insertMany(restaurants)
     .then((restaurants) => {

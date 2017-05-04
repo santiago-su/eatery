@@ -1,3 +1,5 @@
+process.env.NODE_ENV = 'test';
+
 const mongoose = require('mongoose');
 const Restaurant = require('../backend/models/restaurant');
 const chai = require('chai');
@@ -10,7 +12,7 @@ chai.use(chaiHttp);
 
 describe('Restaurants', () => {
 
-  beforeEach((done) => {
+  afterEach((done) => {
     Restaurant.remove({}, (err) => {
       done();
     });
