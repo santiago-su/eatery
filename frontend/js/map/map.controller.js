@@ -43,7 +43,9 @@ export default class MapCtrl {
           url: `${constants.api}/restaurant`,
           method: 'POST',
           data: results
-        }).then((res) => console.log(res));
+        }).then((res) => {
+          console.log(res)
+        });
 
         if (status == google.maps.places.PlacesServiceStatus.OK) {
           for (var i = 0; i < results.length; i++) {
