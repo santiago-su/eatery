@@ -33,7 +33,9 @@ gulp.task('views', function() {
       .pipe(gulp.dest('./frontend/js/config/'));
 });
 
-gulp.task('default', function() {
+
+gulp.task('default', ['views'], function() {
+
   gulp.watch(viewFiles, ['views']);
 
   const Webpack = require('webpack');
