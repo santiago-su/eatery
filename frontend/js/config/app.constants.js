@@ -1,6 +1,7 @@
 const AppConstants = {
   appName: 'Eatery',
-  api: 'api'
+  api: 'api',
+  jwtKey: 'jwtToken'
 };
 
 export default AppConstants;

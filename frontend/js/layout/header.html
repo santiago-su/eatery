@@ -5,10 +5,12 @@
     <md-nav-item flex="80" md-nav-sref="app.home">
       <span ng-bind="::$ctrl.appName | lowercase"></span>
     </md-nav-item>
-    <md-nav-item flex="10" md-nav-click="goto('page2')" name="page2">
-      Login
+    <md-nav-item flex="10"
+      md-nav-sref="app.login" show-authed="false">
+      Sign in
     </md-nav-item>
-    <md-nav-item flex="10" md-nav-click="goto('page3')" name="page3">
+    <md-nav-item flex="10"
+      md-nav-sref="app.register" show-authed="false">
       Register
     </md-nav-item>
   </md-nav-bar>

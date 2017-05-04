@@ -13,6 +13,7 @@ import '../globals.scss';
 import './layout';
 import './home';
 import './services';
+import './auth';
 import './components';
 import './map';
 import './restaurants';
@@ -25,6 +26,7 @@ const requires = [
   'app.layout',
   'app.home',
   'app.services',
+  'app.auth',
   'app.components',
   'app.map',
   'app.restaurants'
