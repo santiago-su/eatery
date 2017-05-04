@@ -52,9 +52,11 @@ app.get('/', function(req, res) {
 
 // ROUTES /////////////////////////////////////////////////////////////////////
 
-router.route('/restaurant')
+router.route('/restaurants')
   .get(restaurant.getRestaurants)
-  .post(restaurant.postRestaurant);
+  .post(restaurant.postRestaurants);
+
+router.get('/restaurant', restaurant.getRestaurant);
 
 router.post('/register', user.signUp);
 router.post('/login', user.login);

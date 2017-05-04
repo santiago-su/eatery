@@ -15,15 +15,29 @@ function getRestaurants(req, res) {
 /*
  * POST /restaurant
  */
-function postRestaurant(req, res) {
-  let restaurants = req.body
+function postRestaurants(req, res) {
+  let restaurants = req.body;
   Restaurant.insertMany(restaurants)
     .then((restaurants) => {
-      res.json({ message: 'Success!', restaurants })
+      res.json({ message: 'Success!', restaurants });
     }).catch((error) => {
-      res.send(error)
-    })
+      res.send(error);
+    });
 
 }
 
-module.exports = { getRestaurants, postRestaurant };
+
+/*
+ * GET /restaurant/:id
+ */
+function getRestaurant(req, res) {
+  let query = Restaurant.findOne({ id: req.query.id });
+  query.exec((err, restaurant) => {
+    if (err) res.send(err);
+    res.status(200)
+    res.json(restaurant);
+  });
+}
+
+
+module.exports = { getRestaurants, postRestaurants, getRestaurant };

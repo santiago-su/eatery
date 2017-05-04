@@ -1,3 +1,4 @@
+/* eslint-env node, mocha */
 process.env.NODE_ENV = 'test';
 
 const mongoose = require('mongoose');
@@ -11,6 +12,13 @@ chai.use(chaiHttp);
 
 
 describe('Restaurants', () => {
+
+  const restaurants = [{
+    place_id: 'secret',
+    id: 'secret',
+    name: 'secret',
+    vicinity: 'secret'
+  }];
 
   afterEach((done) => {
     Restaurant.remove({}, (err) => {
@@ -26,14 +34,8 @@ describe('Restaurants', () => {
   describe('/POST restaurant', () => {
 
     it('it should POST an array of restaurants', (done) => {
-      let restaurants = [{
-        place_id: 'secret',
-        id: 'secret',
-        name: 'secret',
-        vicinity: 'secret'
-      }]
       chai.request(server)
-        .post('/api/restaurant')
+        .post('/api/restaurants')
         .send(restaurants)
         .end((err, res) => {
           res.should.have.status(200);
@@ -47,7 +49,55 @@ describe('Restaurants', () => {
           });
 
           done();
-      });
+        });
+    });
+
+
+  });
+
+
+  /*
+  * GET route
+  */
+
+  describe('/GET restaurants', () => {
+
+    it('it should GET all restaurants', (done) => {
+      chai.request(server)
+        .get('/api/restaurants')
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.be.a('array');
+          res.body.length.should.be.eql(0);
+          done();
+
+        });
+    });
+
+
+  });
+
+
+  /*
+  * GET route
+  */
+  describe('/GET restaurant/:id', () => {
+
+    it('it should find the restaurant with the specified id and return it', (done) => {
+      Restaurant.insertMany(restaurants);
+      chai.request(server)
+        .get('/api/restaurant')
+        .query({ id: restaurants[0].id })
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.rshould.be.a('object');
+          res.body.restaurant.place_id.should.be.eql(restaurants[0].place_id);
+          res.body.restaurant.id.should.be.eql(restaurants[0].id);
+          res.body.restaurant.name.should.be.eql(restaurants[0].name);
+          res.body.restaurant.vicinity.should.be.eql(restaurants[0].vicinity);
+
+          done();
+        });
     });
 
 
