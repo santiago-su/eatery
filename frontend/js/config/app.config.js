@@ -1,10 +1,17 @@
-function AppConfig($stateProvider, $urlRouterProvider, $mdThemingProvider, $sceDelegateProvider) {
+import authInterceptor from './auth.interceptor';
+
+function AppConfig($httpProvider, $stateProvider, $urlRouterProvider, $mdThemingProvider, $sceDelegateProvider) {
   'ngInject';
+
+  $httpProvider.interceptors.push(authInterceptor);
 
   $stateProvider
   .state('app', {
     abstract: true,
-    templateUrl: 'layout/app-view.html'
+    templateUrl: 'layout/app-view.html',
+    resolve: {
+      auth: (User) => User.verifyAuth()
+    }
   });
 
   $urlRouterProvider.otherwise('/');
