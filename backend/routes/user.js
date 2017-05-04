@@ -32,7 +32,7 @@ function login(req, res) {
     query.exec(function(err, user) {
       let token;
       if (err) res.json(404);
-      if (!user) { res.json(404) }
+      if (!user) { res.json(404); }
       if (user.validPassword(req.body.user.password)) {
         token = user.generateJwt();
         res.status(200);
@@ -41,8 +41,29 @@ function login(req, res) {
           'token' : token
         });
       }
-    })
+    });
   }
 }
 
-module.exports = { signUp, login };
+/*
+ * GET user /user
+ */
+
+function user(req, res) {
+  let query = User.findOne({ email: req.user.email });
+  query.exec(function(err, user) {
+    if (err) res.json(404);
+    if (!user) res.json(404);
+    if (user.validPassword(req.user.password)) {
+      let token = user.generateJwt();
+      res.status(200);
+      res.json({
+        'email' : user.email,
+        'token' : token
+      });
+    }
+  });
+
+}
+
+module.exports = { signUp, login, user };

@@ -10,6 +10,7 @@ const publicPath = path.resolve(__dirname, '..', 'public');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const router = express.Router();
+const jwt = require('express-jwt');
 
 
 require('./config/db');
@@ -57,6 +58,7 @@ router.route('/restaurant')
 
 router.post('/register', user.signUp);
 router.post('/login', user.login);
+router.get('/user',jwt({ secret: 'secret' }), user.user);
 
 app.listen(port, function () {
   console.log('Server running on port ' + port);
