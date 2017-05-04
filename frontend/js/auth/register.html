@@ -1,0 +1,26 @@
+<md-content layout-padding class='mid-layout'>
+  <h1>Register</h1>
+  <div>
+
+    <form ng-submit="$ctrl.register()">
+      <fieldset ng-disabled="$ctrl.isSubmitting">
+
+        <md-input-container>
+          <label>email</label>
+          <input ng-model="$ctrl.formData.email">
+        </md-input-container>
+
+        <md-input-container>
+          <label>Password</label>
+          <input type="password" ng-model="$ctrl.formData.password">
+        </md-input-container>
+
+        <div>
+          <md-button class="md-warn md-warn" type="submit">Submit</md-button>
+        </div>
+
+      </fieldset>
+
+    </form>
+  </div>
+</md-content>
