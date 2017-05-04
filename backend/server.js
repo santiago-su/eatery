@@ -8,15 +8,15 @@ const httpProxy = require('http-proxy');
 const proxy = httpProxy.createProxyServer();
 const publicPath = path.resolve(__dirname, '..', 'public');
 const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
-const mongoDB = 'mongodb://127.0.0.1/test';
 const morgan = require('morgan');
 const router = express.Router();
-const restaurant = require('./routes/restaurant');
 
-// Set up connection to mongo default test database
-mongoose.connect(mongoDB);
-const db = mongoose.connection;
+
+require('./config/db');
+
+const restaurant = require('./routes/restaurant');
+const user = require('./routes/user');
+
 
 // To log to console
 app.use(morgan('default'));
@@ -55,9 +55,8 @@ router.route('/restaurant')
   .get(restaurant.getRestaurants)
   .post(restaurant.postRestaurant);
 
-// Handle db connection errors
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-db.once('open', () => console.log('Connected to MongoDB'));
+router.post('/register', user.signUp);
+router.post('/login', user.login);
 
 app.listen(port, function () {
   console.log('Server running on port ' + port);
