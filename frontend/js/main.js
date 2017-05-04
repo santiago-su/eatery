@@ -15,6 +15,7 @@ import './home';
 import './services';
 import './components';
 import './map';
+import './restaurants';
 
 const requires = [
   angularMaterial,
@@ -25,7 +26,8 @@ const requires = [
   'app.home',
   'app.services',
   'app.components',
-  'app.map'
+  'app.map',
+  'app.restaurants'
 ];
 
 window.app = angular.module('app', requires);
