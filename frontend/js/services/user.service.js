@@ -46,7 +46,7 @@ export default class User {
 
     } else {
       this._$http({
-        url: `${this._AppConstants.api}/login`,
+        url: `${this._AppConstants.api}/user`,
         method: 'GET'
       }).then(
         (res) => {
