@@ -1,3 +1,4 @@
+/* eslint-env node, mocha */
 process.env.NODE_ENV = 'test';
 
 const mongoose = require('mongoose');
@@ -32,7 +33,7 @@ let userPayload = {
 describe('User', () => {
 
   afterEach((done) => {
-    User.remove({}, (err) => {
+    User.remove({}, () => {
       done();
     });
   });
@@ -51,7 +52,7 @@ describe('User', () => {
         .send(user)
         .end((err, res) => {
           User.findOne({email: user.user.email}, function(err, user) {
-            expect(res.body.email).to.eql(user.email)
+            expect(res.body.email).to.eql(user.email);
           });
 
           res.should.have.status(200);
@@ -64,7 +65,7 @@ describe('User', () => {
           expect(res.body.token).to.be.a.jwt.and.include.property('email');
 
           done();
-      });
+        });
     });
 
 
@@ -79,7 +80,7 @@ describe('User', () => {
 
     it('it should find user in db and return jwt token', (done) => {
 
-      let existingUser = createUser({
+      createUser({
         email: 'example@example.com',
         password: 'secretsecret'
       });
@@ -91,7 +92,7 @@ describe('User', () => {
         .send(userPayload)
         .end((err, res) => {
           User.findOne({email: user.user.email}, function(err, user) {
-            expect(res.body.email).to.eql(user.email)
+            expect(res.body.email).to.eql(user.email);
           });
 
           res.should.have.status(200);
@@ -104,7 +105,7 @@ describe('User', () => {
           expect(res.body.token).to.be.a.jwt.and.include.property('email');
 
           done();
-      });
+        });
     });
 
 
