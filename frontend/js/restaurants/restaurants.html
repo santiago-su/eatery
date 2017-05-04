@@ -7,7 +7,7 @@
         <h3>{{ restaurant.name }}</h3>
         <h4>{{ restaurant.vicinity }}</h4>
       </div>
-      <md-button class="md-warn">Review!</md-button>
+      <a ui-sref="app.restaurant({ id: restaurant.id })"><md-button class="md-warn">Review!</md-button></a>
       <md-divider ></md-divider>
     </md-list-item>
   </md-list>

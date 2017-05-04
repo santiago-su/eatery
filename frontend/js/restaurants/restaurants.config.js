@@ -2,6 +2,7 @@ function RestaurantsConfig($stateProvider) {
   'ngInject';
 
   $stateProvider
+
   .state('app.restaurants', {
     url: '/restaurants',
     controller: 'RestaurantsCtrl',
@@ -11,7 +12,22 @@ function RestaurantsConfig($stateProvider) {
       restaurants: (Restaurants, $state) => {
         Restaurants.get().then(
           (restaurants) => restaurants,
-          (err) => $state.go('app.map')
+          () => $state.go('app.map')
+        );
+      }
+    }
+  })
+
+  .state('app.restaurant', {
+    url: '/restaurant/:id',
+    controller: 'RestaurantsCtrl',
+    controllerAs: '$ctrl',
+    templateUrl: 'restaurants/show.html',
+    resolve: {
+      restaurant: (Restaurants, $state, $stateParams) => {
+        Restaurants.getRestaurant($stateParams.id).then(
+          (restaurant) => restaurant,
+          () => $state.go('app.home')
         );
       }
     }

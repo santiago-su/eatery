@@ -40,7 +40,7 @@ export default class MapCtrl {
 
       service.nearbySearch(this.request, function(results, status) {
         $http({
-          url: `${constants.api}/restaurant`,
+          url: `${constants.api}/restaurants`,
           method: 'POST',
           data: results
         }).then((res) => {

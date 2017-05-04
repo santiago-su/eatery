@@ -1,8 +1,9 @@
 class RestaurantsCtrl {
-  constructor(restaurants, Restaurants) {
+  constructor(Restaurants) {
     'ngInject';
 
     this.restaurants = Restaurants;
+
 
   }
 }
