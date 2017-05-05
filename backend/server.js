@@ -57,6 +57,7 @@ router.route('/restaurants')
   .post(restaurant.postRestaurants);
 
 router.get('/restaurant', restaurant.getRestaurant);
+router.post('/restaurant/review',jwt({ secret: 'secret' }), restaurant.postRestaurantReview);
 
 router.post('/register', user.signUp);
 router.post('/login', user.login);
