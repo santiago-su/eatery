@@ -1,6 +1,6 @@
 <md-toolbar class="md-theme-light">
   <h2 class="md-toolbar-tools">
     <a ui-sref="app.home" ng-bind="::$ctrl.appName | lowercase"></a>
-    <span>&copy; {{::$ctrl.date | date:'yyyy'}}.</span>
+    <span class="copyleft">&copy;</span><span>{{::$ctrl.date | date:'yyyy'}}.</span>
   </h2>
 </md-toolbar>
