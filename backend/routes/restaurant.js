@@ -26,6 +26,31 @@ function postRestaurants(req, res) {
 
 }
 
+/*
+ * POST /restaurant/review
+ */
+
+function postRestaurantReview(req, res) {
+  let restaurantId = req.body.id;
+  let user = req.user.email;
+  let description = req.body.restaurant.review;
+  Restaurant.findOne({ id: restaurantId })
+    .then((restaurant) => {
+      let reviewSchema = {
+        author: user,
+        description: description,
+        score: 5
+      }
+      restaurant.reviews.push(reviewSchema);
+      restaurant.save();
+      return restaurant;
+    }).then((restaurant) => {
+      res.json({ message: 'Success!', restaurant });
+    }).catch((error) => {
+      res.send(error);
+    });
+
+}
 
 /*
  * GET /restaurant/:id
@@ -40,4 +65,4 @@ function getRestaurant(req, res) {
 }
 
 
-module.exports = { getRestaurants, postRestaurants, getRestaurant };
+module.exports = { getRestaurants, postRestaurants, getRestaurant, postRestaurantReview };
