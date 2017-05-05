@@ -30,5 +30,21 @@ export default class Restaurants {
     });
   }
 
+  postReview(formData, id) {
+    return this._$http({
+      url: `${this._AppConstants.api}/restaurant/review`,
+      method: 'POST',
+      data: {
+        'restaurant': formData,
+        'id': id
+      }
+    }).then((res) => {
+      console.log(res);
+      this.restaurant = res.data;
+      return res.data;
+    });
+
+  }
+
 
 }
