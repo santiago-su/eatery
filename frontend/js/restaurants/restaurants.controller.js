@@ -10,7 +10,7 @@ class RestaurantsCtrl {
   postReview() {
     this.isSubmitting = true;
     this.restaurants.postReview(this.formData, this.restaurants.restaurant.id).then(
-      (res) => {
+      () => {
         this.isSubmitting = false;
         this._$state.reload();
       },

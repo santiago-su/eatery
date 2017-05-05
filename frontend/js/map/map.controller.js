@@ -1,3 +1,4 @@
+/*global google*/
 export default class MapCtrl {
   constructor($window, $scope, NgMap, $http, AppConstants) {
     'ngInject';
@@ -44,7 +45,7 @@ export default class MapCtrl {
           method: 'POST',
           data: results
         }).then((res) => {
-          console.log(res)
+          console.log(res);
         });
 
         if (status == google.maps.places.PlacesServiceStatus.OK) {

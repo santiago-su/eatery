@@ -9,7 +9,7 @@ class AuthCtrl {
   register () {
     this.isSubmitting = true;
     this._User.attemptAuth('register', this.formData).then(
-      (res) => {
+      () => {
         this.isSubmitting = false;
         this._$state.go('app.home');
       },
@@ -24,7 +24,7 @@ class AuthCtrl {
   login () {
     this.isSubmitting = true;
     this._User.attemptAuth('login', this.formData).then(
-      (res) => {
+      () => {
         this.isSubmitting = false;
         this._$state.go('app.home');
       },

@@ -53,7 +53,7 @@ export default class User {
           this.current = res.data.email;
           deferred.resolve(true);
         },
-        (err) => {
+        () => {
           this._JWT.destroy();
           deferred.resolve(false);
         }

@@ -1,6 +1,7 @@
 /* eslint-env node, mocha */
 process.env.NODE_ENV = 'test';
 
+/*eslint-disable no-unused-vars*/
 const mongoose = require('mongoose');
 const User = require('../backend/models/user');
 const Restaurant = require('../backend/models/restaurant');
@@ -9,6 +10,7 @@ const chaiHttp = require('chai-http');
 const server = require('../backend/server');
 const should = chai.should();
 const chaiJWT = require('chai-jwt');
+/*eslint-enable no-unused-vars*/
 
 chai.use(chaiHttp);
 chai.use(chaiJWT);
@@ -23,7 +25,7 @@ describe('Restaurants', () => {
   }];
 
   afterEach((done) => {
-    Restaurant.remove({}, (err) => {
+    Restaurant.remove({}, () => {
       done();
     });
   });

@@ -1,5 +1,7 @@
+/*eslint-disable no-unused-vars*/
 const mongoose = require('mongoose');
 const Restaurant = require('../models/restaurant');
+/*eslint-enable no-unused-vars*/
 
 /*
  * GET /restaurant route
@@ -40,7 +42,7 @@ function postRestaurantReview(req, res) {
         author: user,
         description: description,
         score: 5
-      }
+      };
       restaurant.reviews.push(reviewSchema);
       restaurant.save();
       return restaurant;
@@ -59,7 +61,7 @@ function getRestaurant(req, res) {
   let query = Restaurant.findOne({ id: req.query.id });
   query.exec((err, restaurant) => {
     if (err) res.send(err);
-    res.status(200)
+    res.status(200);
     res.json(restaurant);
   });
 }

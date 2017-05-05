@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "gulp",
-    "test": "NODE_ENV=test && mocha --timeout 5000"
+    "test": "NODE_ENV=test && mocha --timeout 5000",
+    "lint": "eslint backend && eslint test && eslint frontend --ignore-pattern '**/app.templates.js'"
   },
   "author": "",
   "license": "ISC",

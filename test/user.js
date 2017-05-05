@@ -1,6 +1,6 @@
 /* eslint-env node, mocha */
 process.env.NODE_ENV = 'test';
-
+/*eslint-disable no-unused-vars*/
 const mongoose = require('mongoose');
 const User = require('../backend/models/user');
 const chai = require('chai');
@@ -9,6 +9,7 @@ const server = require('../backend/server');
 const should = chai.should();
 const expect = chai.expect;
 const chaiJWT = require('chai-jwt');
+/*eslint-enable no-unused-vars*/
 
 chai.use(chaiHttp);
 chai.use(chaiJWT);

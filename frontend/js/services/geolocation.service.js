@@ -14,7 +14,7 @@ export default class Geolocation {
     return 'geolocation' in this._$window.navigator;
   }
 
-  getCurrentPosition(options) {
+  getCurrentPosition() {
     let deferred = this._$q.defer();
     let rootScope = this._$rootScope;
     let win = this._$window;
