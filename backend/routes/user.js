@@ -24,16 +24,13 @@ function signUp(req, res) {
  */
 function login(req, res) {
 
-  if (!req.body.user.email || !req.body.user.password) {
+  if (!req.body.user || !req.body.user.email || !req.body.user.password) {
     res.status(403);
-    res.json({ 'errors' : {'message' : 'No credentials'} });
+    res.json({ 'error' : {'message' : 'No credentials'} });
   } else {
-    let query = User.findOne({ email: req.body.user.email });
-    query.exec((err, user) => {
+    User.findOne({ email: req.body.user.email }).then((user) => {
       let token;
-      if (err) res.json(404);
-      if (!user) { res.json(404); }
-      if (user.validPassword(req.body.user.password)) {
+      if (user && user.validPassword(req.body.user.password)) {
         token = user.generateJwt();
         res.status(200);
         res.json({
@@ -41,6 +38,9 @@ function login(req, res) {
           'token' : token
         });
       }
+    }).catch((err) => {
+      res.status(404);
+      res.json({ 'error': err });
     });
   }
 }
@@ -50,20 +50,17 @@ function login(req, res) {
  */
 
 function user(req, res) {
-  let query = User.findOne({ email: req.user.email });
-  query.exec((err, user) => {
-    if (err) res.json(404);
-    if (!user) res.json(404);
-    if (user.validPassword(req.user.password)) {
-      let token = user.generateJwt();
-      res.status(200);
-      res.json({
-        'email' : user.email,
-        'token' : token
-      });
-    }
+  User.findOne({ email: req.user.email }).then((user) => {
+    let token = user.generateJwt();
+    res.status(200);
+    res.json({
+      'email' : user.email,
+      'token' : token
+    });
+  }).catch((err) => {
+    res.status(403);
+    res.json({ 'error': `${err} Not authenticated` });
   });
-
 }
 
 module.exports = { signUp, login, user };

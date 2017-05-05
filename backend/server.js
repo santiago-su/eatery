@@ -11,6 +11,8 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const router = express.Router();
 const jwt = require('express-jwt');
+const mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
 
 
 require('./config/db');
