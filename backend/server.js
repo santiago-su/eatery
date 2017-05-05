@@ -33,20 +33,20 @@ app.use('/api', router);
 
 if (!isProduction) {
   // Proxy to webpack-dev-server
-  app.all(['/assets/*', '*.hot-update.json'], function (req, res) {
+  app.all(['/assets/*', '*.hot-update.json'], (req, res) => {
     proxy.web(req, res, {
       target: `http://${host}:3001`
     });
   });
 
-  proxy.on('error', function(e) {
+  proxy.on('error', (e) => {
     console.log('Proxy error', e);
   });
 }
 
 app.use(express.static(publicPath));
 
-app.get('/', function(req, res) {
+app.get('/', (req, res) => {
   res.sendFile(path.resolve(__dirname, '..', 'frontend','index.html'));
 });
 
@@ -63,7 +63,7 @@ router.post('/register', user.signUp);
 router.post('/login', user.login);
 router.get('/user',jwt({ secret: 'secret' }), user.user);
 
-app.listen(port, function () {
+app.listen(port, () => {
   console.log('Server running on port ' + port);
 });
 

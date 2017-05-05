@@ -29,7 +29,7 @@ function login(req, res) {
     res.json({ 'errors' : {'message' : 'No credentials'} });
   } else {
     let query = User.findOne({ email: req.body.user.email });
-    query.exec(function(err, user) {
+    query.exec((err, user) => {
       let token;
       if (err) res.json(404);
       if (!user) { res.json(404); }
@@ -51,7 +51,7 @@ function login(req, res) {
 
 function user(req, res) {
   let query = User.findOne({ email: req.user.email });
-  query.exec(function(err, user) {
+  query.exec((err, user) => {
     if (err) res.json(404);
     if (!user) res.json(404);
     if (user.validPassword(req.user.password)) {

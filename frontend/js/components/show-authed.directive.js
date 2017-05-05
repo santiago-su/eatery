@@ -6,7 +6,7 @@ function ShowAuthed(User) {
     link: function(scope, element, attrs) {
       scope.User = User;
 
-      scope.$watch('User.current', function(val) {
+      scope.$watch('User.current', (val) => {
           // If user detected
         if (val) {
           if (attrs.showAuthed === 'true') {

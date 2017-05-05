@@ -39,7 +39,6 @@ export default class Restaurants {
         'id': id
       }
     }).then((res) => {
-      console.log(res);
       this.restaurant = res.data;
       return res.data;
     });

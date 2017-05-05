@@ -29,7 +29,7 @@ export default class MapCtrl {
           position: place.geometry.location
         });
 
-        google.maps.event.addListener(marker, 'click', function() {
+        google.maps.event.addListener(marker, 'click', () => {
           infoWindow.setContent(place.name);
           infoWindow.open(map, this);
         });
@@ -39,7 +39,7 @@ export default class MapCtrl {
       let service = new google.maps.places.PlacesService(map);
       map.setCenter(this._googleMapsCenter);
 
-      service.nearbySearch(this.request, function(results, status) {
+      service.nearbySearch(this.request, (results, status) => {
         $http({
           url: `${constants.api}/restaurants`,
           method: 'POST',

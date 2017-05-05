@@ -3,7 +3,7 @@ function authInterceptor(JWT, AppConstants, $window, $q) {
 
   return {
     // automatically attach Authorization header
-    request: function(config) {
+    request: (config) => {
       if(config.url.indexOf(AppConstants.api) === 0 && JWT.get()) {
         config.headers.Authorization = 'Bearer ' + JWT.get();
       }
@@ -11,7 +11,7 @@ function authInterceptor(JWT, AppConstants, $window, $q) {
     },
 
     // Handle 401
-    responseError: function(rejection) {
+    responseError: (rejection) => {
       if (rejection.status === 401) {
         // clear any JWT token being stored
         JWT.destroy();

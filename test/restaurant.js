@@ -25,8 +25,10 @@ describe('Restaurants', () => {
   }];
 
   afterEach((done) => {
-    Restaurant.remove({}, () => {
-      done();
+    Restaurant.remove({}).then(() => {
+      User.remove({}, () => {
+        done();
+      });
     });
   });
 
