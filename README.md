@@ -45,6 +45,7 @@ npm install
 npm start
 ```
 
+And go to `localhost:3000`
 ## Test
 
 ```sh
