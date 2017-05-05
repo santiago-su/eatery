@@ -1,13 +1,18 @@
 <md-content>
-  <h1>Restaurants near you!</h1>
+  <h1>Restaurants near you</h1>
   <md-list flex>
-    <md-list-item class="md-2-line" ng-repeat="restaurant in $ctrl.restaurants.allRest">
+    <md-list-item class="md-3-line" ng-repeat="restaurant in $ctrl.restaurants.allRest" ng-click="null" ui-sref="app.restaurant({ id: restaurant.id })">
       <img ng-src="https://img.klik-eat.com/inc/upload/images/restaurant/logos/Placeholder/Placeholder%20-%20food.jpg" class="md-avatar"/>
       <div class="md-list-item-text" layout="column">
         <h3>{{ restaurant.name }}</h3>
         <h4>{{ restaurant.vicinity }}</h4>
       </div>
-      <a ui-sref="app.restaurant({ id: restaurant.id })"><md-button class="md-warn">Review!</md-button></a>
+      <div show-authed="true">
+        <a ui-sref="app.restaurant({ id: restaurant.id })"><md-button class="md-warn">Write a review</md-button></a>
+      </div>
+      <div show-authed="false">
+        <h2>You must be logged in to write a review</h2>
+      </div>
       <md-divider ></md-divider>
     </md-list-item>
   </md-list>
