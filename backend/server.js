@@ -60,11 +60,11 @@ router.route('/restaurants')
   .post(restaurant.postRestaurants);
 
 router.get('/restaurant', restaurant.getRestaurant);
-router.post('/restaurant/review',jwt({ secret: 'secret' }), restaurant.postRestaurantReview);
+router.post('/restaurant/review',jwt({ secret: process.env.JWT_SECRET }), restaurant.postRestaurantReview);
 
 router.post('/register', user.signUp);
 router.post('/login', user.login);
-router.get('/user',jwt({ secret: 'secret' }), user.user);
+router.get('/user',jwt({ secret: process.env.JWT_SECRET }), user.user);
 
 app.listen(port, () => {
   console.log('Server running on port ' + port);

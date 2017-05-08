@@ -97,7 +97,7 @@ not using webpack 2 yet on Heroku because it's a pain to find out what's not com
 
 - More integration tests
 - Unit tests
-- Hiding 'secret keys' on env variables, maybe use .dotenv
+- ~~Hiding 'secret keys' on env variables, maybe use .dotenv~~
 - Deploy
 - Logout link on header
 - Fix bug with duplicate inserts of restaurants on database
