@@ -37,8 +37,13 @@ Be sure you have homebrew installed and do
 ```sh
 brew install mongodb
 ```
-and follow instructions to initiate a mongo daemon, then:
+and follow instructions to install mongo, then:
 
+```sh
+mongod
+```
+
+Then in another window
 ```sh
 git clone https://github.com/santiago-su/eatery.git && cd eatery
 npm install
@@ -95,3 +100,4 @@ not using webpack 2 yet on Heroku because it's a pain to find out what's not com
 - Hiding 'secret keys' on env variables, maybe use .dotenv
 - Deploy
 - Logout link on header
+- Fix bug with duplicate inserts of restaurants on database
