@@ -1,6 +1,7 @@
 /*eslint-disable no-unused-vars*/
 const mongoose = require('mongoose');
 const Restaurant = require('../models/restaurant');
+const https = require('https');
 /*eslint-enable no-unused-vars*/
 
 /*
@@ -18,14 +19,28 @@ function getRestaurants(req, res) {
  * POST /restaurant
  */
 function postRestaurants(req, res) {
-  let restaurants = req.body;
-  Restaurant.insertMany(restaurants)
-    .then((restaurants) => {
-      res.json({ message: 'Success!', restaurants });
-    }).catch((error) => {
-      res.send(error);
+  let googleUrl = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${req.body.lat},${req.body.long}&radius=500&type=restaurant&key=${process.env.GOOGLE_API_KEY}`;
+  https.get(googleUrl, (response) => {
+    let body = '';
+    response.on('data', (chunk) => {
+      body += chunk;
     });
-
+    response.on('end', () => {
+      let response = JSON.parse(body);
+      let places = response.results;
+      Restaurant.insertMany(places).then((restaurants) => {
+        res.status(200);
+        res.json({ message: 'Success!', restaurants });
+      }).catch((error) => {
+        res.status(404);
+        res.send({'error': error});
+      });
+    });
+  }).on('error', function(e) {
+    console.log('Got error: ' + e.message);
+    res.status(404);
+    res.send({'error': e});
+  });
 }
 
 /*

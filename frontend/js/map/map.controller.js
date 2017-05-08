@@ -43,7 +43,7 @@ export default class MapCtrl {
         $http({
           url: `${constants.api}/restaurants`,
           method: 'POST',
-          data: results
+          data: { 'lat' : this._latitude, 'long' : this._longitude }
         }).then((res) => {
           console.log(res);
         });

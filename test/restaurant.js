@@ -39,25 +39,26 @@ describe('Restaurants', () => {
 
   describe('/POST restaurant', () => {
 
-    it('it should POST an array of restaurants', (done) => {
+    it ('it should POST the users current location and return an array of restaurants', (done) => {
       chai.request(server)
         .post('/api/restaurants')
-        .send(restaurants)
+        .send({ lat: '19.3516118', long: '-99.1445179' })
         .end((err, res) => {
-          res.should.have.status(200);
-          res.body.should.be.a('object');
-          res.body.should.have.property('message').eql('Success!');
-          res.body.restaurants.forEach(function(r) {
-            r.should.have.property('place_id');
-            r.should.have.property('id');
-            r.should.have.property('name');
-            r.should.have.property('vicinity');
-          });
-
+          // Set timeout to wait for https to google api
+          setTimeout(function() {
+            res.should.have.status(200);
+            res.body.should.be.a('object');
+            res.body.should.have.property('message').eql('Success!');
+            res.body.restaurants.forEach(function(r) {
+              r.should.have.property('place_id');
+              r.should.have.property('id');
+              r.should.have.property('name');
+              r.should.have.property('vicinity');
+            });
+          }, 1000)
           done();
         });
     });
-
 
   });
 
